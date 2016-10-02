@@ -1,0 +1,99 @@
+/* CSS Document */
+
+
+#category_info_widget .c_info_news {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 4px 4px 8px;
+    text-align: left;
+}
+
+#category_info_widget .c_info_news h3 {
+    border-bottom: 2px dotted #f0f0f0;
+    color: #666;
+    font-size: 100%;
+    font-weight: bold;
+    margin: 0 0 6px;
+    padding: 4px;
+}
+
+
+.sort_list_wrap {
+    border-bottom: 1px dotted #bbbbbb;
+    margin-bottom: 8px;
+    position: relative;
+    width: 100%;
+}
+.sort_list_wrap dl.sort_controll{
+	padding:8px 0;
+}
+.sort_list_wrap dl#sort_controll2{
+	left: 250px;
+    margin: 0;
+    position: absolute;
+    top: 44px;
+}
+
+.sort_list_wrap dl.sort_controll dt {
+    float: left;
+    margin-right: 10px;
+    padding: 4px 0 0 3px;
+    white-space: nowrap;
+}
+.sort_list_wrap dl.sort_controll dd{
+    border: 1px solid #c4c4c4;
+    border-radius: 3px;
+    display: inline;
+    float: left;
+    margin: 0 20px 0 0;
+    overflow: hidden;
+    position: relative;
+}
+.sort_list_wrap dl.sort_controll dd ul li{
+	float:left;
+}
+.sort_list_wrap dl.sort_controll dd ul li a{
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #fefefe 0%, #e3e3e3 100%) repeat scroll 0 0;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #ccc;
+    color: #333;
+    display: block;
+    padding: 5px 7px 4px;
+}
+
+.sort_list_wrap dl.sort_controll dd ul li.list-select{
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #464646 0%, #656565 100%) repeat scroll 0 0;
+    color: #fff;
+    padding: 5px 10px 4px;
+}
+.sort_list_wrap dl#sort_controll2 ul li a,
+.sort_list_wrap dl#sort_controll2 ul li span{
+    padding-left: 20px;
+}
+
+.sort_list_wrap dl#sort_controll2 ul li.variation-change a{
+    background: url("/user/images/icon-variation-change.gif") no-repeat scroll 4px 50%, rgba(0, 0, 0, 0) linear-gradient(to bottom, #fefefe 0%, #e3e3e3 100%) repeat scroll 0 0;
+}
+.sort_list_wrap dl#sort_controll2 ul li.thumb-change a{
+    background: url("/user/images/icon-thumb-change.gif") no-repeat scroll 4px 50%, rgba(0, 0, 0, 0) linear-gradient(to bottom, #fefefe 0%, #e3e3e3 100%) repeat scroll 0 0;
+}
+.sort_list_wrap dl#sort_controll2 ul li.list-select span{
+    background: url("/user/images/icon-list-change-ac.gif") no-repeat scroll 0 50%, rgba(0, 0, 0, 0) linear-gradient(to bottom, #464646 0%, #656565 100%) repeat scroll 0 0;
+}
+
+
+
+.variation_text {
+    color: #666;
+}
+
+.productDetail .review-wrap{
+	/*color: #0c5333;
+    font-size: 16px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 1.2em;
+    margin: 10px 0 0;*/
+}	

@@ -1,0 +1,66 @@
+/* CSS Document */
+
+/* ========== login ========= */
+.login_block,.float_box{
+	margin-bottom: 30px;
+    width: 49%;
+}
+
+.login_block .login_block_i,
+.float_box .float_box_i{
+	border:1px solid #d3d3d3;
+	padding:20px;
+}
+.login_block .login_block_i table td{
+	padding-bottom:25px;
+
+}
+
+
+/* ========= form table ========= */
+.form_table{
+	border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    margin: 15px 0;
+    width: 100%;
+    word-break: break-all;
+}
+.form_table th {
+	background: #ededed none repeat scroll 0 0;
+    text-align: left;
+}
+.form_table td, .form_table th {
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+	padding: 10px 5px;
+}
+.form-required {
+    background: #f00 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.9em;
+    line-height: 1.1;
+    margin-left: 0.5em;
+    padding: 5px 5px 3px;
+    text-align: center;
+}
+.form_table input[type="radio"] {
+    margin: 0 0.3em 0 0;
+}
+.form_table input[type="password"], .form_table input[type="text"], .form_table textarea {
+    margin: 0.2em 0.5em 0.2em 0;
+    padding: 5px;
+}
+.form_table select {
+    padding: 4px;
+}
+
+.form_table .font-tick{
+	font-size: 0.9em;
+}
+.form_rules_box table,
+.form_rules_box table td,
+.form_rules_box table th{
+	border:none;
+}

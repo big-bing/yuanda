@@ -1,0 +1,45 @@
+﻿@charset "utf-8";
+/* CSS Document */
+#header .top h1{
+	float:none;
+}
+.loginBox {
+    margin: 38px auto 85px;
+    width: 550px;
+}
+.loginBox h2 {
+    background: #e4211d none repeat scroll 0 0;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 10px;
+}
+.loginBox .innerbox {
+    border: 1px solid #ccc;
+}
+.loginBox .innerbox table {
+    margin: 30px auto;
+}
+.loginBox .innerbox table th, .loginBox .innerbox table td {
+    padding: 10px;
+}
+input.W260 {
+    width: 260px;
+}
+.entrBox{	
+	width:100%;
+	line-height:30px;
+}
+.entrBox th{
+	padding-right:5px;
+	width:25%;
+	text-align:right;
+	color:#888;
+}
+.entrBox input{
+	width:250px;
+	border:1px solid #ccc;
+	padding:3px;
+}
+.completeBtn{
+	text-align:center;
+}

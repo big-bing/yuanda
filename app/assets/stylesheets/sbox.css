@@ -1,0 +1,45 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+#swrap{
+	margin:10px;
+}
+#swrap .btn_close{
+	position:relative;
+	margin: -10px -10px 15px;
+	background:url(/user/images/menu_bg_green_bto.gif) repeat-x;
+}
+#swrap .btn_close h2{
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding:5px 10px;
+}
+#swrap .btn_close a{
+     position:absolute;
+	 right:0px;
+	 bottom:5px;	
+}
+.searchResult{
+    padding:25px 10px;	
+}
+.tform{
+    border:1px solid #ccc;
+	border-collapse:collapse;	
+}
+.tform th,.tform td{
+    padding:5px 8px;
+	border:1px solid #ccc;	
+}
+.tform th{
+    background:#e3e3e3;
+	text-align:left;	
+}
+
+.h2_tit, .h2_busi_tit {
+    border-left: 5px solid #dc0019;
+    padding-left: 15px;
+    font-size: 16px;
+    padding: 4px 0 4px 10px;
+}
+

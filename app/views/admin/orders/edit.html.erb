@@ -1,0 +1,133 @@
+<div class="toolbar row">
+  <div class="col-sm-6 hidden-xs">
+    <div class="page-header">
+      <h3>订单管理<small>编辑订单</small></h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to '订单管理', admin_orders_path %>
+      </li>
+      <li class="active">
+        编辑订单
+      </li>
+    </ol>
+  </div>
+</div>
+
+<%= render 'admin/common/messages'%>
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- start: FORM VALIDATION 2 PANEL -->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <h4 class="panel-title"> <i class="fa fa-globe"></i>
+          订单
+          <span class="text-bold">编辑</span>
+        </h4>
+      </div>
+
+      <%= render 'form', order: @order %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-white">
+      <div class="panel-body">
+        <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
+          <table class="table table-striped table-bordered table-hover table-full-width dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
+            <thead>
+            <tr role="row">
+                <th class="center">品名</th>
+                <th class="center" style="width:80px">规格(MM)</th>
+                <th class="center" style="width:60px">数量</th>
+                <th class="center" style="width:80px">单价</th>
+                <th class="center" style="width:60px">打孔数量</th>
+                <th class="center" style="width:60px">打孔价格</th>
+                <th class="center" style="width:60px">挖角数量</th>
+                <th class="center" style="width:60px">挖角价格</th>
+                <th class="center" style="width:60px">总价</th>
+                <th class="center" style="width:80px">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+              <% i = 1 %>
+              <% @items.each do |item| %>
+                <tr class="item_form_tr">
+                  <%= form_for(item, url: admin_item_path, method: :patch, remote: true, html: {id: "item_form_#{i}"}) do |f| %>
+                    <%= f.hidden_field :exist_item_form_number, value: i %>
+                    <td><%= item.name %></td>
+                    <td><%= item.width %><br/><%= item.height %></td>
+                    <td><%= item.number %></td>
+                    <td><%= item.price %></td>
+                    <td><%= item.punch_count %></td>
+                    <td><%= item.punch_price %></td>
+                    <td><%= item.dig_angle_count %></td>
+                    <td><%= item.dig_angle_price %></td>
+                    <td><%= item.amout %></td>
+                    <td>
+                      <div class="visible-md visible-lg hidden-sm hidden-xs">
+                          <a class="btn btn-xs btn-blue tooltips" href="javascript:void(0)" onclick="edit_item(this, <%= i %>);"><i class="fa fa-edit"></i></a>
+                          <a class="btn btn-xs btn-red tooltips" href="javascript:void(0)" onclick="delete_item(this, <%= i %>);"><i class="fa fa-times fa fa-white"></i></a>
+                      </div>
+                    </td>
+                  <% end %>
+                </tr>
+                <% i = i + 1 %>
+              <% end %>
+              <tr class="item_form_tr">
+                <%= form_for(:item, url: admin_items_path, method: :post, remote: true, html: {id: "item_form_#{i}"}) do |f| %>
+                  <%= f.hidden_field :item_form_number, value: i %>
+                  <%= f.hidden_field :order_id, value: @order.id %>
+                  <td class="center"><%= f.text_field :name, class: 'form-control' %></td>
+                  <td class="center">
+                    <%= f.text_field :width, class: 'form-control' %><br/>
+                    <%= f.text_field :height, class: 'form-control' %>
+                  </td>
+                  <td class="center"><%= f.text_field :number, class: 'form-control' %></td>
+                  <td class="center"><%= f.text_field :price, class: 'form-control' %></td>
+                  <td class="center"><%= f.text_field :punch_count, class: 'form-control' %></td>
+                  <td class="center"><%= f.select :punch_price, Item.punch_price_select, class: 'form-control' %></td>
+                  <td class="center"><%= f.text_field :dig_angle_count, class: 'form-control' %></td>
+                  <td class="center"><%= f.select :dig_angle_price, Item.dig_angle_price_select, class: 'form-control' %></td>
+                  <td class="center"></td>
+                  <td class="center">
+                    <div class="visible-md visible-lg hidden-sm hidden-xs">
+                        <button class="btn btn-xs btn-blue tooltips" onclick="save_item(this, <%= i %>);"><i class="fa fa-check"></i></button>
+                        <!-- <button class="btn btn-xs btn-red tooltips" onclick="delete_item(this, <%= i %>);"><i class="fa fa-times fa fa-white"></i></button> -->
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function save_item(obj, i){
+    $('#locked').show();
+  }
+
+  function edit(obj, i){
+
+  }
+
+  function delete_item(obj, i){
+    $('#locked').show();
+    form = $(obj).parent().parent().parent().find('form');
+    form.attr('method', 'delete');
+    form.submit();
+  }
+</script>

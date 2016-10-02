@@ -1,0 +1,120 @@
+@charset "utf-8";
+/* CSS Document */
+.all{
+	width:960px;
+	margin:0 auto;
+}
+#head,.footer,#content .customize,#BoatBg{
+	min-width:960px;
+}
+#head .logo{
+	border-top:4px solid #e4211d;
+	overflow:hidden;
+}
+
+#head .nav ul.menu li.last{ margin:0px;}
+#head .logoImg{
+	color:#000000;
+	text-decoration:none;
+	padding-top:10px;
+}
+#head .logoImg .logoIcon{
+    padding-top:20px;
+}
+#head .welconmeP a{
+	margin-left:5px;
+	color:#1a5fe7;
+	text-decoration:none;
+	font-weight:bold;
+}
+#head .welcomeIcon{
+    background:image-url("icon01.png") no-repeat left center;
+	padding-left:15px;	
+}
+#head .welcomeIcon2{
+	background:image-url("icon02.png") no-repeat left center;
+	padding-left:15px;
+}
+#head .userInfor{
+    margin-top:5px;	
+}
+#head .userInfor ul{
+	font-size:14px;
+	margin-top:5px;
+}
+#head .userInfor ul li{
+	color:#666666;
+	float:left;
+	line-height:30px;
+}
+#head .userInfor ul li.use_method{
+	padding-left:20px;
+	vertical-align:middle;
+}
+#head .userInfor ul li.userpwd{
+	padding-left:5px;
+	vertical-align:middle;
+}
+#content{
+	width:960px;
+	margin:0 auto;
+}
+
+
+.path_nav{
+    clear: both;
+    font-size: 10px;
+    margin: 8px 0 5px;
+}
+.path_nav ul {
+    background: #eaeaea url("icon-home.gif") no-repeat scroll 10px 7px;
+    padding: 5px 25px;
+}
+.path_nav li {
+    float: left;
+    list-style: outside none none;
+    margin: 0 0 0 6px;
+    white-space: nowrap;
+}
+
+.login_note{
+	background-color:#FFFF66;
+	border:2px solid #ff0000;
+	padding:10px;
+	text-align:center;
+	width:940px;
+	margin:0 auto;
+}
+
+.h1_tit{
+	background-color:#dc0019;
+	font-size:16px;
+	color:#fff;
+	padding:8px 10px;
+	line-height:24px;
+	margin-bottom:10px;
+}	
+
+.h2_tit,.h2_busi_tit{
+	border-left:5px solid #dc0019;
+	padding-left:15px;
+	font-size:16px;
+	padding: 4px 0 4px 10px;
+}
+
+.h2_busi_tit{
+	border-left:5px solid #2c761c;
+}
+
+.footer{
+	width:960px;
+	margin:0 auto;
+}
+.footer_font{
+	padding:20px;
+	color:#333333;
+	overflow:hidden;
+	text-align:right;
+	background:#f5f5f5;
+}
+

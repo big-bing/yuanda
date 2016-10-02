@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'fgflop';
+    src: url('../fonts/fgflop.eot');
+    src: url('../fonts/fgflop.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/fgflop.woff') format('woff'),
+         url('../fonts/fgflop.ttf') format('truetype');
+}
+
+

@@ -1,0 +1,38 @@
+<div class="toolbar row">
+  <div class="col-sm-6 hidden-xs">
+    <div class="page-header">
+      <h3>订单管理<small>新建订单</small></h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to '订单管理', admin_orders_path %>
+      </li>
+      <li class="active">
+        新建订单
+      </li>
+    </ol>
+  </div>
+</div>
+
+<%= render 'admin/common/messages'%>
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- start: FORM VALIDATION 2 PANEL -->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <h4 class="panel-title"> <i class="fa fa-globe"></i>
+          订单
+          <span class="text-bold">新建</span>
+        </h4>
+      </div>
+
+      <%= render 'form', order: @order %>
+    </div>
+  </div>
+</div>

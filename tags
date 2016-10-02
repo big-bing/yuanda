@@ -1,0 +1,53 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ActiveSupport	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c
+AdminConstraint	config/initializers/admin_constraint.rb	/^class AdminConstraint$/;"	c
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Test1
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+Article	app/models/article.rb	/^class Article < ActiveRecord::Base$/;"	c
+ArticleTest	test/models/article_test.rb	/^class ArticleTest < ActiveSupport::TestCase$/;"	c
+ArticlesController	app/controllers/Articles_controller.rb	/^class ArticlesController < UserBaseController$/;"	c
+CreateArticle	db/migrate/20160910071447_create_article.rb	/^class CreateArticle < ActiveRecord::Migration$/;"	c
+CreateVersions	db/migrate/20160922141545_create_versions.rb	/^class CreateVersions < ActiveRecord::Migration$/;"	c
+PDFKit	config/initializers/pdfkit.rb	/^class PDFKit$/;"	c
+PdfUtil	app/models/pdf_util.rb	/^class PdfUtil$/;"	c
+PdfUtils	app/models/pdf_utils/article_pdf_util.rb	/^module PdfUtils::ArticlePdfUtil$/;"	m
+Test1	config/application.rb	/^module Test1$/;"	m
+UserBaseController	app/controllers/user_base_controller.rb	/^class UserBaseController < ApplicationController$/;"	c
+VersionsController	app/controllers/versions_controller.rb	/^class VersionsController < ApplicationController$/;"	c
+VersionsControllerTest	test/controllers/versions_controller_test.rb	/^class VersionsControllerTest < ActionController::TestCase$/;"	c
+VersionsHelper	app/helpers/versions_helper.rb	/^module VersionsHelper$/;"	m
+change	db/migrate/20160910071447_create_article.rb	/^  def change$/;"	f	class:CreateArticle
+change	db/migrate/20160922141545_create_versions.rb	/^  def change$/;"	f	class:CreateVersions
+command	config/initializers/pdfkit.rb	/^  def command(path = nil)$/;"	f	class:PDFKit
+config	app/models/pdf_util.rb	/^  def self.config template, page_flag=nil$/;"	F	class:PdfUtil
+context!	app/models/pdf_utils/article_pdf_util.rb	/^  def context! context = ''$/;"	f	class:PdfUtils
+create	app/controllers/Articles_controller.rb	/^  def create$/;"	f	class:ArticlesController
+download_pdf	app/controllers/Articles_controller.rb	/^  def download_pdf$/;"	f	class:ArticlesController
+encode_file_name	app/controllers/application_controller.rb	/^  def encode_file_name(file_name)$/;"	f	class:ApplicationController
+get_brower_type	app/controllers/application_controller.rb	/^  def get_brower_type(http_user_agent)$/;"	f	class:ApplicationController
+get_context	app/controllers/Articles_controller.rb	/^  def get_context article$/;"	f	class:ArticlesController
+get_params	app/controllers/Articles_controller.rb	/^  def get_params$/;"	f	class:ArticlesController
+get_template	app/controllers/Articles_controller.rb	/^  def get_template$/;"	f	class:ArticlesController
+index	app/controllers/Articles_controller.rb	/^  def index$/;"	f	class:ArticlesController
+item_type_options	db/migrate/20160922141545_create_versions.rb	/^  def item_type_options$/;"	f	class:CreateVersions
+matches?	config/initializers/admin_constraint.rb	/^  def matches?(request)$/;"	f	class:AdminConstraint
+mysql?	db/migrate/20160922141545_create_versions.rb	/^  def mysql?$/;"	f	class:CreateVersions
+new	app/controllers/Articles_controller.rb	/^  def new$/;"	f	class:ArticlesController
+pdf_kit	app/models/pdf_util.rb	/^  def pdf_kit page_flag$/;"	f	class:PdfUtil
+revert	app/controllers/versions_controller.rb	/^  def revert$/;"	f	class:VersionsController
+to_file	app/models/pdf_util.rb	/^  def to_file path, name$/;"	f
+to_file	config/initializers/pdfkit.rb	/^  def to_file path$/;"	f	class:PDFKit
+to_pdf	app/models/pdf_util.rb	/^  def to_pdf$/;"	f
+tpl_apply_email	app/models/pdf_utils/article_pdf_util.rb	/^  def tpl_apply_email$/;"	f	class:PdfUtils
+tpl_apply_name	app/models/pdf_utils/article_pdf_util.rb	/^  def tpl_apply_name$/;"	f	class:PdfUtils
+tpl_apply_no	app/models/pdf_utils/article_pdf_util.rb	/^  def tpl_apply_no$/;"	f	class:PdfUtils
+tpl_apply_total_amount	app/models/pdf_utils/article_pdf_util.rb	/^  def tpl_apply_total_amount$/;"	f	class:PdfUtils
+tpl_apply_url	app/models/pdf_utils/article_pdf_util.rb	/^  def tpl_apply_url$/;"	f	class:PdfUtils
+tpl_event_name	app/models/pdf_utils/article_pdf_util.rb	/^  def tpl_event_name$/;"	f	class:PdfUtils
+versions_table_options	db/migrate/20160922141545_create_versions.rb	/^  def versions_table_options$/;"	f	class:CreateVersions

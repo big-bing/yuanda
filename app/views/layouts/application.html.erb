@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= get_title %></title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <%= stylesheet_link_tag 'admin/application', 'media' => 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track' => true %>
+
+    <link rel="stylesheet" href="/assets/fonts/fgflop/css/font.css">
+
+    <link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/helper.css">
+    <!--<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.css">-->
+
+    <link rel="stylesheet" href="/assets/fonts/weather-icons/css/weather-icons.min.css">
+
+    <%= csrf_meta_tags %>
+
+    <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div id="locked" style="display: none;"></div>
+
+    <%= render 'admin/common/before'%>
+
+    <div class="main-wrapper">
+      <div class="main-container inner">
+        <div class="main-content">
+          <div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Panel Configuration</h4>
+                </div>
+                <div class="modal-body">Here will be a configuration form</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <%= yield %>
+          </div>
+
+          <div class="subviews">
+            <div class="subviews-container"></div>
+          </div>
+        </div>
+      </div>
+      <%= render 'admin/common/after'%>
+    </div>
+    <%= javascript_include_tag "admin/app.js" %>
+    <script>
+        jQuery(document).ready(function() {
+            Main.init();
+            SVExamples.init();
+            Index.init();
+//            PageCommentTool.init(114, 20);
+        });
+    </script>
+  </body>
+</html>

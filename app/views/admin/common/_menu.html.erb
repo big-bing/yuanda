@@ -1,0 +1,309 @@
+<ul class="main-navigation-menu">
+<li<%= active_menu({:home => [:index]})%>>
+  <%#= link_to(admin_home_index_url) do %>
+      <i class="fa fa-home"></i> <span class="title"> 管理菜单 </span><span class="label label-default pull-right "></span>
+  <% #end %>
+</li>
+<li<%= active_menu({:orders => []})%>>
+  <a href="javascript:void(0)">
+    <i class="fa fa-shopping-cart"></i> <span class="title"> 订单管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li<%= active_menu({:orders => [:index]})%>>
+      <%= link_to(admin_orders_path) do%>
+        <i class="fa fa-shopping-cart"></i><span class="title"> 订单一览 </span>
+      <% end %>
+    </li>
+    <li<%= active_menu({:orders => [:new]})%>>
+      <%= link_to(new_admin_order_path) do%>
+        <i class="fa fa-shopping-cart"></i><span class="title"> 新建订单 </span>
+      <% end %>
+    </li>
+  </ul>
+</li>
+<!-- <li<%= active_menu({:customers => []})%>>
+  <a href="javascript:void(0)">
+    <i class="fa fa-users"></i> <span class="title"> 会員管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li<%= active_menu({:customers => []})%>>
+      <%#= link_to(admin_customers_path) do%>
+        <i class="fa fa-user"></i><span class="title"> 利用者マスター </span>
+      <% #end %>
+    </li>
+  </ul>
+</li>
+<li<%= active_menu({:corporation_customers => []})%>>
+  <a href="javascript:void(0)">
+    <i class="fa fa-bank"></i> <span class="title"> 中間卸管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li<%= active_menu({:corporation_customers => []})%>>
+      <%#= link_to(admin_corporation_customers_path) do%>
+          <i class="fa fa-user"></i><span class="title"> 中間卸一覧 </span>
+      <% #end %>
+    </li>
+  </ul>
+</li>
+<li<%= active_menu({:products => [],tags: []})%>>
+<a href="javascript:void(0)">
+    <i class="fa fa-globe"></i> <span class="title">商品管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li<%= active_menu({:products => [:index]})%>>
+      <%#= link_to admin_products_url do %>
+          <i class="fa fa-list"></i><span class="title"> 商品一覧 </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:products => [:not_admit]})%>>
+      <%#= link_to not_admit_admin_products_url do %>
+          <i class="fa fa-eye-slash"></i>  <span class="title"> 未承認商品一覧 </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:products => [:new]})%>>
+      <%#= link_to new_admin_product_url do %>
+          <i class="fa fa-edit"></i>  <span class="title"> 商品新規作成 </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({tags: []})%>>
+      <%#= link_to admin_tags_url do %>
+          <i class="fa fa-tags"></i>  <span class="title"> 商品タグ管理　</span>
+      <% #end %>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/product/in_libray_list.html" >
+        <i class="fa fa-truck"></i>  <span class="title"> 商品・在庫管理　</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/product/ordering_list.html" >
+        <i class="fa fa-money"></i>  <span class="title"> 商品・発注管理　</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/product/shiire_list.html" >
+        <i class="fa fa-laptop"></i>  <span class="title"> 商品・仕入管理　</span>
+      </a>
+    </li>
+  </ul>
+</li>
+<li class='main-navigation-menu-order'>
+  <a href="javascript:void(0)">
+    <i class="fa fa-shopping-cart"></i> <span class="title"> 受注管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li>
+      <%#= link_to(admin_orders_path) do %>
+        <i class="fa fa-list"></i><span class="title">注文状況一覧</span>
+      <% #end %>
+    </li>
+  </ul>
+</li>
+<li <%= active_menu({:logistics => []})%>>
+  <a href="javascript:;" class="active">
+    <i class="fa fa-truck"></i> <span class="title"> 出荷管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li <%= active_menu({:logistics => [:index]})%>>
+      <%#= link_to(admin_logistics_path) do %>
+          <i class="fa fa-cart-arrow-down"></i>  <span class="title">未出荷一覧</span>
+      <% #end %>
+    </li>
+    <li <%= active_menu({:logistics => [:result]})%>>
+      <%#= link_to(result_admin_logistics_path) do %>
+          <i class="fa fa-car"></i>  <span class="title">出荷済み一覧</span>
+      <% #end %>
+    </li>
+    <li <%= active_menu({:logistics => [:all]})%>>
+      <%#= link_to(all_admin_logistics_path) do %>
+          <i class="fa fa-list"></i>  <span class="title">全ての一覧</span>
+      <% #end %>
+    </li>
+  </ul>
+</li>
+<li class='main-navigation-menu-sales'>
+  <a href="javascript:void(0)">
+    <i class="fa fa-bar-chart-o"></i> <span class="title">売上管理</span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li>
+      <a href="/bootstrap_admin/views/sales/list.html" >
+        <i class="pe-7s-display1"></i>  <span class="title">売上処理</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/sales/creditcard-list.html" >
+        <i class="fa fa-credit-card"></i><span class="title">クレジッドカード決済一覧</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/sales/instead-list.html" >
+        <i class="pe-7s-cash"></i><span class="title"> 代引き決済一覧 </span>
+      </a>
+    </li>
+  </ul>
+</li>
+<li class='main-navigation-menu-debt'>
+  <a href="javascript:void(0)">
+    <i class="pe-7s-calculator"></i> <span class="title">買掛管理</span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li>
+      <a href="/bootstrap_admin/views/debt/list.html" >
+        <i class="fa fa-newspaper-o"></i><span class="title">支払案内書作成</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/debt/send_list.html" >
+        <i class="fa fa-money"></i><span class="title">支払案内書・支払一覧</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/debt/delete_list.html" >
+        <i class="fa fa-unlink"></i><span class="title">削除済み支払案内一覧</span>
+      </a>
+    </li>
+  </ul>
+</li>
+<li<%= active_menu({:categories => [], :customer_type => [], :price_ranks => [], :product_vendors => [], :admins => [], :product_attributes => [], :specification_attributes => [], :shipping_pattens => [], :show_plans => [], :makers => []})%>>
+  <a href="javascript:;" class="active">
+    <i class="fa fa-cubes"></i> <span class="title">マスタ管理 </span> <i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li<%= active_menu({:categories => []})%>>
+      <%#= link_to admin_categories_url do %>
+        <i class="fa fa-sitemap"></i><span class="title"> 商品カテゴリマスター </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:customer_type => [:index]})%>>
+      <%#= link_to(admin_customer_type_index_url) do %>
+        <i class="fa fa-bookmark"></i><span class="title"> 会員種別マスター </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:price_ranks => []})%>>
+      <%#= link_to(admin_price_ranks_url) do %>
+        <i class="fa fa-align-center"></i><span class="title"> 価格ランク名マスター </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:product_vendors => []})%>>
+      <%#= link_to(admin_product_vendors_path) do %>
+        <i class="fa fa-laptop"></i><span class="title"> 仕入先マスター</span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:admins => []})%>>
+      <%#= link_to(admin_admins_url) do %>
+        <i class="pe-7s-user"></i><span class="title"> 管理者マスター </span> <span class="label partition-blue pull-right "></span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:product_attributes => []})%>>
+      <%#= link_to(admin_product_attributes_path) do %>
+          <i class="fa fa-keyboard-o"></i><span class="title">商品属性マスター</span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:specification_attributes => []})%>>
+      <%#= link_to(admin_specification_attributes_path) do %>
+        <i class="fa fa-language"></i><span class="title">規格属性マスター </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:shipping_pattens => []})%>>
+      <%#= link_to(admin_shipping_pattens_path) do %>
+        <i class="fa fa-plane"></i><span class="title"> 送料マスター </span>
+      <% #end %>
+    </li>
+    <li<%= active_menu({:show_plans => []})%>>
+      <%#= link_to(admin_show_plans_path) do %>
+          <i class="fa fa-cogs"></i><span class="title"> 表示プラン設定 </span>
+      <% #end %>
+    </li>
+    <li <%= active_menu({:makers => []})%>>
+      <%#= link_to(admin_makers_path) do %>
+        <i class="fa fa-cogs"></i><span class="title"> メーカーマスター </span>
+      <% #end %>
+    </li>
+  </ul>
+</li>
+<li class='main-navigation-menu-cms'>
+  <a href="javascript:;">
+    <i class="fa fa-code"></i> <span class="title">CMS管理</span><i class="icon-arrow"></i> <span class="arrow "></span>
+  </a>
+  <ul class="sub-menu">
+    <li>
+      <a href="/bootstrap_admin/views/cms/top_banner/list.html">
+        <i class="fa fa-cog"></i><span class="title"> トップページ自由エリア管理 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/tokusyuu/list.html">
+        <i class="fa fa-cogs"></i><span class="title"> 特集管理 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/campaign/list.html">
+        <i class="fa fa-cogs"></i><span class="title"> キャンペーン管理 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/right_banner/list.html">
+        <i class="fa fa-cogs"></i><span class="title"> 右バナー管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/recommend/list.html">
+        <i class="fa fa-cogs"></i><span class="title"> おすすめアイテム管理 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/time_limit_sale/list.html">
+        <i class="fa fa-cogs"></i><span class="title">期限限定セールアイテム管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/theme/list.html">
+        <i class="fa fa-cogs"></i><span class="title"> テーマ管理 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/free_page/list.html">
+        <i class="fa fa-file-code-o"></i><span class="title">フリーページ管理</span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/file_manage/index.html">
+        <i class="pe-7s-file"></i><span class="title"> ファイル管理 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/cms/error_news/list.html">
+        <i class="pe-7s-news-paper"></i><span class="title"> 緊急ニュース管理 </span>
+      </a>
+    </li>
+  </ul>
+</li>
+<li<%= active_menu({:discounts => []})%>>
+  <a href="javascript:void(0)">
+    <i class="pe-7s-tools"></i> <span class="title">運用管理</span><i class="icon-arrow"></i> <span class="arrow "></span>
+  </a>
+  <ul class="sub-menu">
+    <li>
+      <a href="/bootstrap_admin/views/application/comment/list.html">
+        <i class="fa fa-comments-o"></i><span class="title"> レビューコメント一覧 </span>
+      </a>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/application/informs/list.html">
+        <i class="pe-7s-note2"></i><span class="title"> お知らせ管理 </span>
+      </a>
+    </li>
+    <li<%= active_menu({:discounts => []})%>>
+      <%#= link_to(admin_discounts_path) do %>
+          <i class="fa fa-calendar-plus-o"></i><span class="title"> クーポン管理 </span>
+      <% #end %>
+    </li>
+    <li>
+      <a href="/bootstrap_admin/views/application/login_history/list.html">
+        <i class="fa fa-server"></i><span class="title"> 操作ログ管理 </span>
+      </a>
+    </li>
+  </ul>
+</li> -->
+</ul>

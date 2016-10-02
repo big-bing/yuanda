@@ -1,0 +1,9 @@
+ch:
+  activerecord:
+    models:
+      order: "订单"
+
+    attributes:
+      order:
+        name: "客户名称"
+        code: "任务单编码"

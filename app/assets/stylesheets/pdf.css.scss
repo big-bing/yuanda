@@ -1,0 +1,44 @@
+table.table {
+  clear: both;
+  margin-bottom: 6px !important;
+  max-width: none !important;
+}
+.table-bordered {
+  border: 1px solid #000000;
+}
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+table {
+  background-color: transparent;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+le-bordered thead tr th {
+  vertical-align: middle;
+}
+.table > thead > tr > th {
+  border-bottom: 1px solid #000000;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+  border: 1px solid #000000;
+}
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+  background-color: #fbfbfc;
+}
+.table tbody > tr > td, .table tfoot > tr > td {
+  vertical-align: middle;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  border-top: 1px solid #000000;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+  border: 1px solid #000000;
+}
+.center {
+  text-align: center;
+}

@@ -1,0 +1,203 @@
+<div class="toolbar row">
+  <div class="col-sm-6 hidden-xs">
+    <div class="page-header">
+      <h3>订单管理 <small>订单一览</small></h3>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xs-12">
+    <div class="toolbar-tools pull-right">
+      <!-- start: TOP NAVIGATION MENU -->
+      <ul class="nav navbar-right">
+        <!-- start: TO-DO DROPDOWN -->
+        <li class="dropdown">
+          <button class="btn btn-orange add-row" onclick="javascript:location.href='<%= new_admin_order_path %>'">
+            新建订单 <i class="fa fa-plus"></i>
+          </button>
+        </li>
+      </ul>
+      <!-- end: TOP NAVIGATION MENU -->
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to '订单管理', admin_orders_path %>
+      </li>
+      <li class="active">
+        订单一览
+      </li>
+    </ol>
+  </div>
+</div>
+
+<%#= render 'admin/common/messages'%>
+<div class="row">
+  <div class="col-md-12">
+    <!-- start: FORM VALIDATION 1 PANEL -->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <h4><i class="fa fa-search"></i> 検索</h4>
+        <div class="panel-tools">
+          <div class="dropdown">
+            <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p>
+          検索条件を入力してください。
+        </p>
+        <hr>
+        <%= form_tag search_admin_orders_path, class: 'form-search' do%>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">
+                管理者名
+              </label>
+              <%= text_field_tag :name, params[:name],class:'form-control'%>
+            </div>
+          </div>
+          <!--<div class="col-md-4">-->
+            <!--<div class="form-group">-->
+              <!--<label class="control-label">-->
+                <!--利用できる機能-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">
+                ログインID
+              </label>
+              <%= text_field_tag :login, params[:login],class:'form-control'%>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">
+                メールアドレス
+              </label>
+              <%= text_field_tag :email, params[:email],class:'form-control'%>
+            </div>
+          </div>
+          <!-- <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">
+                管理者権限
+              </label>
+              <%#= select_tag :admin_role_id, options_for_select(AdminRole.all.collect { |p| [ p.name, p.id ] }, params[:admin_role_id]), {include_blank: true, class: 'form-control'}%>
+            </div>
+          </div> -->
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+          </div>
+          <div class="col-md-7">
+            <button class="btn btn-info" type="submit">
+              検索 <i class="fa fa-search"></i>
+            </button>
+            <button class="btn btn-yellow" type="reset">
+              条件クリア <i class="fa fa-rotate-left"></i>
+            </button>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- end: FORM VALIDATION 1 PANEL -->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- start: DYNAMIC TABLE PANEL -->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <h4 class="panel-title"><i class="fa fa-list"></i> 检索结果 <span class="text-bold">订单一栏</span></h4>
+        <div class="panel-tools">
+          <div class="dropdown">
+            <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
+              <i class="fa fa-cog"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-light pull-right" role="menu">
+              <li>
+                <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
+              </li>
+              <li>
+                <a class="panel-refresh" href="#">
+                  <i class="fa fa-refresh"></i> <span>Refresh</span>
+                </a>
+              </li>
+              <li>
+                <a class="panel-expand" href="#">
+                  <i class="fa fa-expand"></i> <span>Fullscreen</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <!--<div class="row">
+            <div class="col-md-12 space20">
+                <div class="btn-group pull-right">
+                    <button data-toggle="dropdown" onclick="javascript:location.href='#'" class="btn btn-green dropdown-toggle">
+                        CSVダウンロード
+                        <i class="fa fa-cloud-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>-->
+        <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
+          <table class="table table-striped table-bordered table-hover table-full-width dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
+            <thead>
+            <tr role="row">
+                <th>客户名称</th>
+                <th>任务单编码</th>
+                <th>总货款</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if @orders.present? %>
+                <% @orders.each do |order| %>
+                    <tr>
+                      <td class="center"><%= order.name %></td>
+                      <td class="center"><%= order.code %></td>
+                      <td class="center"><%= order.total_amout %></td>
+                      <td class="center">
+                        <div class="visible-md visible-lg hidden-sm hidden-xs">
+                          <%= link_to((edit_admin_order_path(order)), class: 'btn btn-xs btn-blue tooltips', title: "编辑") do%>
+                              <i class="fa fa-edit"></i>
+                          <% end %>
+                          <%= link_to(admin_order_path(order), data: { confirm: '确定要删除此条数据吗？' }, method: :delete, class: 'btn btn-xs btn-red tooltips', title: '删除') do%>
+                              <i class="fa fa-times fa fa-white"></i>
+                          <% end %>
+                        </div>
+
+                      </td>
+                    </tr>
+                <% end %>
+            <% else %>
+                <tr>
+                  <td class="center" colspan="7"><%=I18n.t("messages.no_data")%></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <div class="dataTables_info" role="status" aria-live="polite">
+            <%= page_entries_info @orders %>
+          </div>
+          <div class="dataTables_paginate paging_simple_numbers">
+            <%= paginate @orders, :params => params, window: 3 %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end: DYNAMIC TABLE PANEL -->
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<%= form_for(:order, url: @order.new_record? ? admin_orders_path : admin_order_path(@order)) do |f| %>
+<%= error_messages_for :order%>
+<div class="panel-body">
+  <div class="row">
+    <div class="col-md-6">
+      <p>「<span class="symbol required"></span>」は必須項目であることを表します。</p>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-orange btn-block" type="button" onclick="location.href='<%= admin_orders_path%>'"> <i class="fa fa-arrow-circle-left"></i>
+        取消
+      </button>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-blue btn-block" type="submit">
+        保存
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="errorHandler alert alert-danger no-display">
+        <i class="fa fa-times"></i>
+        输入的内容不正确，请确认后输入
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">客户名称<span class="symbol required"></span></label>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">任务单编码<span class="symbol required"></span></label>
+        <%= f.text_field :code, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+    $(function(){
+
+    })
+</script>

@@ -1,0 +1,351 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ========== common setting ========== */
+body{
+	font-size: 12px;
+	line-height: 1.5;
+	font-family: "メイリオ","Meiryo",verdana,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+	color: #333333;
+}
+
+body,h1,h2,h3,h4,h5,h5,div,p,table,th,td,ul,ol,li,dl,dt,dd,hr,fieldset,blockquote,pre,form,input{margin:0; padding:0;}
+li{list-style-type:none;}
+table{border-collapse:collapse;}
+img{border:none;}
+u,i,em{font-style:normal;}
+u{	text-decoration:none;}
+a{color:#1a5fe7;outline:none;text-decoration:none;}
+a:hover{ text-decoration:underline;}
+
+.f_l{
+	float:left;
+}
+.f_r{
+	float:right;
+}
+hr.cb,.cb{
+	visibility:hidden;
+	height:0;
+	border:none;
+	clear:both;
+	font-size:1px;
+	line-height:0;
+	overflow:hidden;
+	margin:0;
+}
+.grey{ background:#CCC;}
+
+.clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+}
+
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+input[type=text],input[type=password],textarea{
+	/*padding:5px;
+	color:#333;
+	font-size:12px;*/
+}
+input[type="text"], select,textarea,input[type="password"] {
+    border: 1px solid #b4b3b1;
+	font-family: "メイリオ","Meiryo",verdana,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+}
+input {
+    vertical-align:middle;
+}
+select{
+	border:1px solid #b4b3b1;
+	padding:3px 3px;
+}
+
+.input-text {
+    height: 17px;
+    line-height: 17px;
+    padding: 2px 0 2px 3px;
+    width: 308px;
+}
+
+.mt5{margin-top:5px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt20{margin-top:20px;}
+.mb5{margin-bottom:5px;}
+.mb10{margin-bottom:10px;}
+.mb15{margin-bottom:15px;}
+.mb20{margin-bottom:20px;}
+.mb50{margin-bottom:50px;}
+.ml5{margin-left:5px;}
+.ml10{margin-left:10px;}
+.pl10{padding-left:10px;}
+.mr5{margin-right:5px;}
+.mr20{margin-right:20px;}
+.mr10{margin-right:10px;}
+
+.W40{width:40px;}
+.W60{width:60px;}
+.W100{width:100px;}
+.W120{width:120px;}
+.W150{width:150px;}
+.W180{width:180px;}
+.W200{width:200px;}
+.W210{width:210px;}
+.W220{width:220px;}
+.W232{width:232px;}
+.W255{width:255px;}
+.W278{width:278px;}
+.W800{width:800px;}
+.W600{width:600px;}
+.W300{width:300px;}
+.W330{width:330px;}
+.W400{width:400px;}
+.W420{width:420px;}
+.W500{width:500px;}
+.W550{width:550px;}
+.W600{width:600px;}
+.W750{width:750px;}
+.W350{width:350px;}
+.W165{width:165px;}
+.H100{height:100px;}
+.fontS16{font-size:16px;}
+
+.fontW-noraml{font-weight:normal;}
+.fontS18{font-size:18px;}
+
+input[type=button]:focus,input[type=submit]:focus{outline:none;}
+input[type=button]::-moz-focus-inner{border-color:transparent!important;}
+a{outline:none;}
+
+input.imeOff {
+    ime-mode: disabled;
+}
+
+
+fieldset {
+    padding:10px;
+}
+
+.ac{text-align:center;}
+.va{vertical-align:middle;}
+
+.white{color:#fff;}
+.red{color:#e4211d;}
+.green{color:#5b9810;}
+.gray{ color:#ccc;}
+.borderLine{border:1px solid #ccc;}
+.positionR{position:relative;}
+.padding5{padding:0 5px;}
+.borderBottom{
+   border-bottom:1px solid #ccc;
+   padding-bottom:5px;
+}
+.borderBottomDotted{
+	border-bottom:1px dotted #ccc;
+   padding-bottom:5px;
+}
+.positionDiv{
+	position:relative;
+}
+
+
+.price{
+    color: #e4211d;
+    display: block;
+    font-size: 1.1em;
+    font-weight: 700;
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+.color666{
+    color: #666;
+}
+
+.Height50{
+     height:50px;
+	 overflow:hidden;
+}
+
+
+/*car parts finder*/
+
+.screen_area h4 {
+	padding: 5px!important;
+	border-left: 16px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 15px!important;
+	text-align: left;
+	font-size: 18px;
+}
+
+a.btn_carbrand {
+	border: 1px solid #d7dada;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 12px;
+	font-family: arial, helvetica, sans-serif;
+	padding: 30px 10px 10px 10px;
+	text-decoration: none;
+	display: inline-block;
+	font-weight: bold;
+	color: #222222;
+	background-color: #f4f5f5;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f4f5f5), to(#eeeeee));
+	background-image: -webkit-linear-gradient(top, #f4f5f5, #eeeeee);
+	background-image: -moz-linear-gradient(top, #f4f5f5, #eeeeee);
+	background-image: -ms-linear-gradient(top, #f4f5f5, #eeeeee);
+	background-image: -o-linear-gradient(top, #f4f5f5, #eeeeee);
+	background-image: linear-gradient(to bottom, #f4f5f5, #eeeeee);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f5f5, endColorstr=#eeeeee);
+	width: 80px;
+	height: 60px;
+	text-align: center;
+	vertical-align: bottom;
+	display: block;
+	text-decoration: none!important;
+	margin: 0 0 5px 20px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=145, Strength=5);
+}
+
+.brnd_name_area {
+	display: block;
+	vertical-align: middle!important;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+ul.indexList li {
+    display: inline;
+    background: iamge-url('cars/arrow_d_bk.gif') 0 1px no-repeat;
+    padding-left: 15px;
+    margin: 0 8px!important;
+    font-size: 14px;
+}
+.midashi_title {
+    color: #e0c64f;
+    font-weight: bold;
+    border-bottom: 1px dotted #888;
+    width: 98%;
+    height: 20px;
+    float: left;
+    padding: 4px 6px 0px;
+    margin: 15px 0 5px 0;
+    text-align: left;
+}
+.textm {
+    background: url(/user/images/cars/arrow_r_bk.gif) no-repeat 0 50%;
+    padding-left: 10px;
+    font-size: 0.9em;
+    margin: 0 30px 0 0;
+    float: left;
+    width: 180px;
+}
+.fmc_link {
+    max-width: 500px;
+    width: 100%;
+    height: 140px;
+    margin: 30px auto 0 auto;
+}
+
+ul.ilo3 {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+
+li.ilo3 {
+    border: 1px solid #f0f0f0;
+    box-shadow: 1px 1px 3px 0 #f2f2f2;
+    display: inline-block;
+    height: 210px;
+    margin: 0 12px 12px 0 !important;
+    overflow: hidden;
+    padding: 24px 20px 22px;
+    position: relative;
+    vertical-align: top;
+}
+li.ilo3 * {
+    box-sizing: border-box;
+}
+
+.ilbk3 {
+    background-image: linear-gradient(to top, #fafafa 0px, #fdfdfd 20%, #fff 60%);
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 200px;
+}
+a.ilc3 {
+    display: inline-block;
+    text-align: center;
+}
+.results a {
+    text-decoration: none;
+}
+.ilw3 {
+    width: 183px;
+}
+.ilt3 {
+    height: 46px;
+    margin: 24px 0 8px;
+    overflow: hidden;
+}
+
+.ilb3 .ill3, .ilb3 .ill3 .sml {
+    font-family: Arial,sans-serif;
+    font-size: 11px;
+    line-height: 14px;
+    text-align: left;
+}
+.results .s-price {
+    font-size: 14px !important;
+}
+.results .bld {
+    font-weight: bold;
+}
+.results .red {
+    color: #b12704;
+}
+.ilt3 a:hover span, .ilt3 a:active span {
+    color: #e47911;
+}
+.btn_detail_n{
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+	padding:5px;
+}
+.c_red{
+	border: 1px solid #dc0019;
+	background: #dc0019 none repeat scroll 0 0;
+	color:#FFF;
+}
+.c_gray{
+	border: 1px solid #cccccc;
+	background: #cccccc none repeat scroll 0 0;
+	color:#000;
+	width:100px;
+}
+.btn_detail_blue{
+	border: 1px solid #1856BD;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+	color:#FFF;
+	background: #1856BD none repeat scroll 0 0;
+	padding:5px;
+}

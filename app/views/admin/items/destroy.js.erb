@@ -1,0 +1,6 @@
+$('#locked').hide();
+if(<%= @save_flag %>){
+  $($('.item_form_tr')[<%= @item_form_number.to_i - 1 %>]).remove();
+}else{
+  alert('发生错误，请刷新后重试！')
+}
