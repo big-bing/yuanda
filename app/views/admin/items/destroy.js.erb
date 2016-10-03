@@ -1,6 +1,18 @@
 $('#locked').hide();
 if(<%= @save_flag %>){
   $($('.item_form_tr')[<%= @item_form_number.to_i - 1 %>]).remove();
+  $('.item_form_tr').each(function(i){
+    $(this).find('form').attr('id', 'item_form_' + (String)(i + 1));
+    $(this).find('form').attr('action', '/admin/items/' + item.id.to_s + '?exist_item_form_number=' + i.to_s);
+    oper_td = $(this).find('td').last();
+    oper_td.find('div').find('a').first().attr('onclick', 'edit_item(this, ' + (String)(i + 1) + ');');
+    oper_td.find('div').find('a').last().attr('onclick', 'delete_item(this, ' + (String)(i + 1) + ');');
+  });
+  input_item_tr = $('.item_form_tr').last();
+  all_item_count = $('.item_form_tr').size();
+  input_item_tr.find('form').attr('id', 'item_form_' + all_item_count);
+  input_item_tr.find('#item_item_form_number').val(all_item_count);
+  input_item_tr.find('td').last().find('div').find('button').attr('onclick', 'onclick="save_item(this, ' + all_item_count + ');"');
 }else{
   alert('发生错误，请刷新后重试！')
 }

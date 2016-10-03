@@ -58,11 +58,8 @@
             </tr>
             </thead>
             <tbody>
-              <% i = 1 %>
               <% @items.each do |item| %>
                 <tr class="item_form_tr">
-                  <%= form_for(item, url: admin_item_path, method: :patch, remote: true, html: {id: "item_form_#{i}"}) do |f| %>
-                    <%= f.hidden_field :exist_item_form_number, value: i %>
                     <td><%= item.name %></td>
                     <td><%= item.width %><br/><%= item.height %></td>
                     <td><%= item.number %></td>
@@ -74,37 +71,32 @@
                     <td><%= item.amout %></td>
                     <td>
                       <div class="visible-md visible-lg hidden-sm hidden-xs">
-                          <a class="btn btn-xs btn-blue tooltips" href="javascript:void(0)" onclick="edit_item(this, <%= i %>);"><i class="fa fa-edit"></i></a>
-                          <a class="btn btn-xs btn-red tooltips" href="javascript:void(0)" onclick="delete_item(this, <%= i %>);"><i class="fa fa-times fa fa-white"></i></a>
+                          <a class="btn btn-xs btn-blue tooltips" href="javascript:void(0)" onclick="edit_item(this, <%= item.id %>);"><i class="fa fa-edit"></i></a>
+                          <a class="btn btn-xs btn-red tooltips" href="javascript:void(0)" onclick="delete_item(this, <%= item.id %>);"><i class="fa fa-times fa fa-white"></i></a>
                       </div>
                     </td>
-                  <% end %>
                 </tr>
-                <% i = i + 1 %>
               <% end %>
               <tr class="item_form_tr">
-                <%= form_for(:item, url: admin_items_path, method: :post, remote: true, html: {id: "item_form_#{i}"}) do |f| %>
-                  <%= f.hidden_field :item_form_number, value: i %>
-                  <%= f.hidden_field :order_id, value: @order.id %>
-                  <td class="center"><%= f.text_field :name, class: 'form-control' %></td>
+                  <%= hidden_field_tag :order_id, @order.id %>
+                  <td class="center"><%= text_field_tag :name, '', class: 'form-control' %></td>
                   <td class="center">
-                    <%= f.text_field :width, class: 'form-control' %><br/>
-                    <%= f.text_field :height, class: 'form-control' %>
+                    <%= text_field_tag :width, '', class: 'form-control' %><br/>
+                    <%= text_field_tag :height, '', class: 'form-control' %>
                   </td>
-                  <td class="center"><%= f.text_field :number, class: 'form-control' %></td>
-                  <td class="center"><%= f.text_field :price, class: 'form-control' %></td>
-                  <td class="center"><%= f.text_field :punch_count, class: 'form-control' %></td>
-                  <td class="center"><%= f.select :punch_price, Item.punch_price_select, class: 'form-control' %></td>
-                  <td class="center"><%= f.text_field :dig_angle_count, class: 'form-control' %></td>
-                  <td class="center"><%= f.select :dig_angle_price, Item.dig_angle_price_select, class: 'form-control' %></td>
+                  <td class="center"><%= text_field_tag :number, '', class: 'form-control' %></td>
+                  <td class="center"><%= text_field_tag :price, '', class: 'form-control' %></td>
+                  <td class="center"><%= text_field_tag :punch_count, '', class: 'form-control' %></td>
+                  <td class="center"><%= select_tag :punch_price, options_for_select(Item.punch_price_select), class: 'form-control' %></td>
+                  <td class="center"><%= text_field_tag :dig_angle_count, '', class: 'form-control' %></td>
+                  <td class="center"><%= select_tag :dig_angle_price, options_for_select(Item.dig_angle_price_select), class: 'form-control' %></td>
                   <td class="center"></td>
                   <td class="center">
                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                        <button class="btn btn-xs btn-blue tooltips" onclick="save_item(this, <%= i %>);"><i class="fa fa-check"></i></button>
-                        <!-- <button class="btn btn-xs btn-red tooltips" onclick="delete_item(this, <%= i %>);"><i class="fa fa-times fa fa-white"></i></button> -->
+                        <button class="btn btn-xs btn-blue tooltips" onclick="save_item(this);"><i class="fa fa-check"></i></button>
+                        <!-- <button class="btn btn-xs btn-red tooltips" onclick="delete_item(this);"><i class="fa fa-times fa fa-white"></i></button> -->
                     </div>
                   </td>
-                <% end %>
               </tr>
             </tbody>
           </table>
@@ -116,18 +108,162 @@
 
 <script>
 
-  function save_item(obj, i){
+  function save_item(obj){
     $('#locked').show();
+    $.ajax({
+      url: '<%= admin_items_path %>',
+      type: 'post',
+      data: {
+        order_id: $('#order_id').val(),
+        name: $('#name').val(),
+        width: $('#width').val(),
+        height: $('#height').val(),
+        number: $('#number').val(),
+        price: $('#price').val(),
+        punch_count: $('#punch_count').val(),
+        punch_price: $('#punch_price').val(),
+        dig_angle_count: $('#dig_angle_count').val(),
+        dig_angle_price: $('#dig_angle_price').val(),
+      },
+      dataType: 'json',
+      success: function(data){
+        $('#locked').hide();
+        if(data['save_status'] == '1'){
+          alert('输入的数据有误，请确认！');
+        }else if(data['save_status'] == '3'){
+          alert('发生异常，请刷新后重试！');
+        }else if(data['save_status'] == '2'){
+          item = JSON.parse(data['item']);
+          html = '<tr class="item_form_tr">'
+                  + '<td>' + item.name + '</td>'
+                  + '<td>' + item.width + '<br/>' + item.height + '</td>'
+                  + '<td>' + item.number + '</td>'
+                  + '<td>' + item.price + '</td>'
+                  + '<td>' + item.punch_count + '</td>'
+                  + '<td>' + item.punch_price + '</td>'
+                  + '<td>' + item.dig_angle_count + '</td>'
+                  + '<td>' + item.dig_angle_price + '</td>'
+                  + '<td>' + item.amout + '</td>'
+                  + '<td>'
+                    + '<div class="visible-md visible-lg hidden-sm hidden-xs">'
+                      + '<a class="btn btn-xs btn-blue tooltips" href="javascript:void(0)" onclick="edit_item(this, ' + item.id + ');"><i class="fa fa-edit"></i></a>'
+                      + '<a class="btn btn-xs btn-red tooltips" href="javascript:void(0)" onclick="delete_item(this, ' + item.id + ');"><i class="fa fa-times fa fa-white"></i></a>'
+                    + '</div>'
+                  + '</td>'
+                  + '</tr>';
+          $(obj).parent().parent().parent().before(html);
+        }
+      },
+    });
   }
 
-  function edit(obj, i){
+  function edit_item(obj, i){
+    tds = $(obj).parent().parent().parent().find('td');
+    punch_price_options = '';
+    dig_angle_price_options = '';
+    <% Item.punch_price_select.each do |value| %>
+      if(tds.eq(5).html() == <%= value.to_s %>){
+        punch_price_options += '<option value="<%= value %>" selected="selected"><%= value %></option>';
+      }else{
+        punch_price_options += '<option value="<%= value %>"><%= value %></option>';
+      }
+    <% end %>
+    <% Item.dig_angle_price_select.each do |value| %>
+      if(tds.eq(7).html() == <%= value.to_s %>){
+        dig_angle_price_options += '<option value="<%= value %>" selected = "selected"><%= value %></option>';
+      }else{
+        dig_angle_price_options += '<option value="<%= value %>"><%= value %></option>';
+      }
+    <% end %>
+    html = '<td class="center"><input type="text" name="name" id="name_' + i + '" value="' + tds.eq(0).html() + '" class="form-control" /></td>'
+            + '<td class="center">'
+              + '<input type="text" name="width" id="width_' + i + '" value="' + tds.eq(1).html().split('<br>')[0] + '" class="form-control" /><br/>'
+              + '<input type="text" name="height" id="height_' + i + '" value="' + tds.eq(1).html().split('<br>')[1] + '" class="form-control" />'
+            + '</td>'
+            + '<td class="center"><input type="text" name="number" id="number_' + i + '" value="' + tds.eq(2).html() + '" class="form-control" /></td>'
+            + '<td class="center"><input type="text" name="price" id="price_' + i + '" value="' + tds.eq(3).html() + '" class="form-control" /></td>'
+            + '<td class="center"><input type="text" name="punch_count" id="punch_count_' + i + '" value="' + tds.eq(4).html() + '" class="form-control" /></td>'
+            + '<td class="center"><select name="punch_price" id="punch_price_' + i + '" value="" class="form-control">'
+              + punch_price_options
+            + '</select></td>'
+            + '<td class="center"><input type="text" name="dig_angle_count" id="dig_angle_count_' + i + '" value="' + tds.eq(6).html() + '" class="form-control" /></td>'
+            + '<td class="center"><select name="dig_angle_price" id="dig_angle_price_' + i + '" value="" class="form-control">'
+              + dig_angle_price_options
+            + '</select></td>'
+            + '<td class="center"></td>'
+            + '<td class="center">'
+              + '<div class="visible-md visible-lg hidden-sm hidden-xs">'
+                  + '<button class="btn btn-xs btn-blue tooltips" onclick="update_item(this, ' + i + ');"><i class="fa fa-check"></i></button>'
+                  //+ '<button class="btn btn-xs btn-red tooltips" onclick="delete_item(this);"><i class="fa fa-times fa fa-white"></i></button>'
+              + '</div>'
+            + '</td>';
+    $(obj).parent().parent().parent().html(html);
+  }
 
+  function update_item(obj, i){
+    $('#locked').show();
+    $.ajax({
+      url: '/admin/items/' + i,
+      type: 'patch',
+      data: {
+        name: $('#name_' + i).val(),
+        width: $('#width_' + i).val(),
+        height: $('#height_' + i).val(),
+        number: $('#number_' + i).val(),
+        price: $('#price_' + i).val(),
+        punch_count: $('#punch_count_' + i).val(),
+        punch_price: $('#punch_price_' + i).val(),
+        dig_angle_count: $('#dig_angle_count_' + i).val(),
+        dig_angle_price: $('#dig_angle_price_' + i).val(),
+      },
+      dataType: 'json',
+      success: function(data){
+        $('#locked').hide();
+        if(data['save_status'] == '1'){
+          alert('输入的数据有误，请确认！');
+        }else if(data['save_status'] == '3'){
+          alert('发生异常，请刷新后重试！');
+        }else if(data['save_status'] == '2'){
+          item = JSON.parse(data['item']);
+          html = '<td>' + item.name + '</td>'
+                  + '<td>' + item.width + '<br/>' + item.height + '</td>'
+                  + '<td>' + item.number + '</td>'
+                  + '<td>' + item.price + '</td>'
+                  + '<td>' + item.punch_count + '</td>'
+                  + '<td>' + item.punch_price + '</td>'
+                  + '<td>' + item.dig_angle_count + '</td>'
+                  + '<td>' + item.dig_angle_price + '</td>'
+                  + '<td>' + item.amout + '</td>'
+                  + '<td>'
+                    + '<div class="visible-md visible-lg hidden-sm hidden-xs">'
+                      + '<a class="btn btn-xs btn-blue tooltips" href="javascript:void(0)" onclick="edit_item(this, ' + item.id + ');"><i class="fa fa-edit"></i></a>'
+                      + '<a class="btn btn-xs btn-red tooltips" href="javascript:void(0)" onclick="delete_item(this, ' + item.id + ');"><i class="fa fa-times fa fa-white"></i></a>'
+                    + '</div>'
+                  + '</td>';
+          $(obj).parent().parent().parent().html(html);
+        }
+      },
+    });
   }
 
   function delete_item(obj, i){
     $('#locked').show();
-    form = $(obj).parent().parent().parent().find('form');
-    form.attr('method', 'delete');
-    form.submit();
+    $.ajax({
+      url: '/admin/items/' + i,
+      type: 'delete',
+      dataType: 'json',
+      success: function(data){
+        $('#locked').hide();
+        if(data['delete_status'] == '1'){
+          alert('输入的数据有误，请确认！');
+        }else if(data['delete_status'] == '3'){
+          alert('发生异常，请刷新后重试！');
+        }else if(data['delete_status'] == '2'){
+          $(obj).parent().parent().parent().remove();
+          alert('删除成功！');
+        }
+      },
+    });
   }
+
 </script>
