@@ -5,19 +5,22 @@ class Admin::ItemsController < Admin::AdminBaseController
     save_status = '1'
     if @item.valid?
       @item.size = @item.width * @item.height / 1000000.to_f
-      @item.amout = @item.size * @item.price * @item.number + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
+      # @item.amout = @item.size * @item.price * @item.number + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
+      @item.amout = @item.size * @item.price * @item.number
       Item.transaction do
         begin
           @item.save
           order = Order.find_by_id(@item.order_id)
           order.amout = order.amout.to_f + @item.amout.to_f
           order.total_amout = order.amout.to_i
+          order.capital_total_amout = number_to_capital_zh order.total_amout
           order.number = order.number.to_i + @item.number.to_i
           order.size = order.size.to_f + @item.size.to_f
           order.save
           save_status = '2'
         rescue Exception => e
           save_status = '3'
+          raise ActiveRecord::Rollback
         end
       end
     end
@@ -34,17 +37,20 @@ class Admin::ItemsController < Admin::AdminBaseController
       begin
         @item.update_attributes get_item_params
         @item.size = @item.width * @item.height / 1000000.to_f
-        @item.amout = @item.size * @item.price * @item.number + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
+        # @item.amout = @item.size * @item.price * @item.number + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
+        @item.amout = @item.size * @item.price * @item.number
         @item.save
         order = Order.find_by_id(@item.order_id)
         order.amout = order.amout.to_f + @item.amout.to_f - old_amout.to_f
         order.total_amout = order.amout.to_i
+        order.capital_total_amout = number_to_capital_zh order.total_amout
         order.number = order.number.to_i + @item.number.to_i - old_number.to_i
         order.size = order.size.to_f + @item.size.to_f - old_size.to_f
         order.save
         save_status = '2'
       rescue Exception => e
         save_status = '3'
+        raise ActiveRecord::Rollback
       end
     end
     render json: { save_status: save_status, item: @item.to_json }
@@ -59,6 +65,7 @@ class Admin::ItemsController < Admin::AdminBaseController
           order = Order.find_by_id(@item.order_id)
           order.amout = order.amout.to_f - @item.amout.to_f
           order.total_amout = order.amout.to_i
+          order.capital_total_amout = number_to_capital_zh order.total_amout
           order.number = order.number.to_i - @item.number.to_i
           order.size = order.size.to_f - @item.size.to_f
           if order.save
@@ -66,8 +73,8 @@ class Admin::ItemsController < Admin::AdminBaseController
           end
           delete_status = '2'
         rescue Exception => e
-          pp e
           delete_status = '3'
+          raise ActiveRecord::Rollback
         end
       end
     end
@@ -77,18 +84,18 @@ class Admin::ItemsController < Admin::AdminBaseController
   private
 
   def get_item_params
-      params.permit(
-        :order_id,
-        :name,
-        :width,
-        :height,
-        :number,
-        :price,
-        :punch_count,
-        :punch_price,
-        :dig_angle_count,
-        :dig_angle_price,
-      );
+    params.permit(
+      :order_id,
+      :name,
+      :width,
+      :height,
+      :number,
+      :price,
+      # :punch_count,
+      # :punch_price,
+      # :dig_angle_count,
+      # :dig_angle_price,
+    );
   end
 
 end

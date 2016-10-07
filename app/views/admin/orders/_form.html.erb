@@ -1,4 +1,4 @@
-<%= form_for(:order, url: @order.new_record? ? admin_orders_path : admin_order_path(@order)) do |f| %>
+<%= form_for(:order, url: @order.new_record? ? admin_orders_path : admin_order_path(@order), method: @order.new_record? ? :post : :put) do |f| %>
 <%= error_messages_for :order%>
 <div class="panel-body">
   <div class="row">
@@ -28,7 +28,7 @@
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label">客户名称<span class="symbol required"></span></label>
+        <label class="control-label">客户姓名<span class="symbol required"></span></label>
         <%= f.text_field :name, class: 'form-control' %>
       </div>
     </div>
@@ -36,8 +36,24 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label">任务单编码<span class="symbol required"></span></label>
-        <%= f.text_field :code, class: 'form-control' %>
+        <label class="control-label">客户电话<span class="symbol required"></span></label>
+        <%= f.text_field :tel, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">加工费用<span class="symbol"></span></label>
+        <%= f.text_field :handling_amout, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">加工说明<span class="symbol"></span></label>
+        <%= f.text_field :handling_description, class: 'form-control' %>
       </div>
     </div>
   </div>

@@ -7,14 +7,25 @@ class Admin::OrdersController < Admin::AdminBaseController
     @orders = Order.includes(:items).references(:items).all.page(params[:page]).per(50).order("orders.id desc")
   end
 
+  def search
+    con = Order.getConn params
+    @orders = Order.includes(:items).references(:items).where(con).all.page(params[:page]).per(50).order("orders.id desc")
+    render :index
+  end
+
   def new
     @order = Order.new
   end
 
   def create
     @order = Order.new order_params
+    @order.code = Time.now.strftime('%y%m%d-%H')
+    @order.amout = @order.amout.to_f + @order.handling_amout.to_f
+    @order.total_amout = @order.amout.to_i
+    @order.capital_total_amout = number_to_capital_zh @order.total_amout
     if @order.valid?
       @order.save
+      flash[:notice] = '新建成功！'
       redirect_to edit_admin_order_path @order
     else
       render :new
@@ -26,34 +37,78 @@ class Admin::OrdersController < Admin::AdminBaseController
   end
 
   def update
+    old_handling_amout = @order.handling_amout
     @order.attributes = order_params
+    @order.amout = @order.amout.to_f + @order.handling_amout.to_f - old_handling_amout
+    @order.total_amout = @order.amout.to_i
+    @order.capital_total_amout = number_to_capital_zh @order.total_amout
     if @order.valid?
       @order.save
+      flash[:notice] = '更新成功！'
       redirect_to action: :index
     else
       render :edit
     end
   end
 
+  def destroy
+    @order = Order.find_by_id(params[:id]);
+    if @order.destroy
+      flash[:notice] = '删除成功'
+    else
+      flash[:notice] = '删除失败'
+    end
+    redirect_to action: :index
+  end
+
   # 下载pdf
   def download_pdf
     html = ''
     file_name = UUIDTools::UUID.random_create
-    order = Order.first
+    order = Order.find_by_id(params[:id])
     # html = get_context(params, article) if article.present?
     html = get_context order
     if html.blank?
       flash[:notice] = "データが存在しません。"
-      return redirect_to orders_path
+      return redirect_to admin_orders_path
     end
     pdf = PdfUtil.config(html, 'page')
     pdf.to_file("order", "#{file_name}.pdf")
     path = "#{Rails.root.to_s}/tmp/pdf/order/#{file_name}.pdf" rescue nil
     if path.blank?
       flash[:notice] = t('no_data')
-      return redirect_to orders_path unless path
+      return redirect_to admin_orders_path unless path
     end
     send_file(path, filename: encode_file_name("glass_list.pdf"))
+  end
+
+  def create_tag
+    save_status = '1'
+    ids = params[:ids].split(',')
+    orders = Order.find(ids)
+    Order.transaction do
+      begin
+        tag = Tag.new
+        tag.save
+        orders.each_with_index do |order, index|
+          order_tag = OrderTag.new
+          order_tag.tag_id = tag.id
+          order_tag.order_id = order.id
+          order_tag.save
+          tag.name += ',' if index != 0
+          tag.name = tag.name.to_s + order.name + '-' + order.code
+          tag.number = tag.number.to_i + order.number.to_i
+          order.make_time = order.make_time.to_i + 1
+          order.save
+        end
+        tag.save
+        save_status = '2'
+      rescue Exception => e
+        save_status = '3'
+        raise ActiveRecord::Rollback
+      end
+    end
+    render json: {save_status: save_status}
   end
 
   # def to_pdf
@@ -81,7 +136,7 @@ class Admin::OrdersController < Admin::AdminBaseController
   end
 
   def order_params
-    params.fetch(:order, {}).permit(:name, :code);
+    params.fetch(:order, {}).permit(:name, :tel, :handling_amout, :handling_description);
   end
 
   # 获取模板以及将模板中需要动态显示数据的地方，把数据获取到

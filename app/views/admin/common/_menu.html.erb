@@ -21,6 +21,18 @@
     </li>
   </ul>
 </li>
+<li<%= active_menu({:tags => []})%>>
+  <a href="javascript:void(0)">
+    <i class="fa fa-file-pdf-o"></i> <span class="title"> 标签书管理 </span><i class="icon-arrow"></i>
+  </a>
+  <ul class="sub-menu">
+    <li<%= active_menu({:tags => [:index]})%>>
+      <%= link_to(admin_tags_path) do%>
+        <i class="fa fa-file-pdf-o"></i><span class="title"> 标签书一览 </span>
+      <% end %>
+    </li>
+  </ul>
+</li>
 <!-- <li<%= active_menu({:customers => []})%>>
   <a href="javascript:void(0)">
     <i class="fa fa-users"></i> <span class="title"> 会員管理 </span><i class="icon-arrow"></i>

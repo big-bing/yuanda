@@ -10,38 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929124130) do
+ActiveRecord::Schema.define(version: 20161007065144) do
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.integer "width"
-    t.integer "height"
-    t.integer "number"
-    t.float   "size",            limit: 24
-    t.integer "price"
-    t.float   "amout",           limit: 24
-    t.integer "order_id"
-    t.boolean "deleted_at"
-    t.integer "punch_count"
-    t.float   "punch_price",     limit: 24
-    t.integer "dig_angle_count"
-    t.float   "dig_angle_price", limit: 24
+    t.string   "name"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "number"
+    t.float    "size",            limit: 24
+    t.integer  "price"
+    t.float    "amout",           limit: 24
+    t.integer  "order_id"
+    t.datetime "deleted_at"
+    t.integer  "punch_count"
+    t.float    "punch_price",     limit: 24
+    t.integer  "dig_angle_count"
+    t.float    "dig_angle_price", limit: 24
     t.index ["deleted_at"], name: "index_items_on_deleted_at", using: :btree
+  end
+
+  create_table "order_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "tag_id"
+    t.integer  "order_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_order_tags_on_deleted_at", using: :btree
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "code",                limit: 65535
+    t.text     "code",                 limit: 65535
     t.integer  "user_id"
     t.integer  "number"
-    t.float    "size",                limit: 24
-    t.float    "amout",               limit: 24
+    t.float    "size",                 limit: 24
+    t.float    "amout",                limit: 24
     t.integer  "total_amout"
     t.string   "capital_total_amout"
     t.integer  "prepaid_amout"
     t.integer  "rest_amout"
     t.datetime "deleted_at"
+    t.string   "tel"
+    t.float    "handling_amout",       limit: 24
+    t.text     "handling_description", limit: 65535
+    t.integer  "make_time"
     t.index ["deleted_at"], name: "index_orders_on_deleted_at", using: :btree
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "description", limit: 65535
+    t.datetime "deleted_at"
+    t.integer  "number"
+    t.index ["deleted_at"], name: "index_tags_on_deleted_at", using: :btree
   end
 
   create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

@@ -151,8 +151,12 @@ module Admin::AdminBaseHelper
 
         order:
         {
-          index: '订单一栏',
+          index: '订单一览',
           new: '新建订单'
+        },
+        tag:
+        {
+          index: '标签书一览',
         },
 
         home:

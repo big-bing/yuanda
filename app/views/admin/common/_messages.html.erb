@@ -1,7 +1,7 @@
 <% flash.each do |key, value| %>
     <% if value.present? %>
         <!-- <div class="alert alert-block alert-<%#= switch_key(key) %>"> -->
-        <div class="alert alert-block alert-<%= key.to_s %>">
+        <div class="alert alert-block alert-<%= switch_key(key) %>">
           <% if key.to_s == 'info'%>
               <i class="icon-hand-right"></i>
               <%= value %>
