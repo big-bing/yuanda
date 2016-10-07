@@ -18,9 +18,9 @@ class Admin::AdminBaseController < ApplicationController
        result = (change_unit(strno.first.split("").reverse,"first").reverse).join("") + "整"
     end
     for m in 0..12
-      result_number = result.gsub(cCha[0][m], cCha[1][m])
+      result.gsub!(cCha[0][m], cCha[1][m])
     end
-    result_number
+    result
 
   end
 
