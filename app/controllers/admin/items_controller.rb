@@ -4,9 +4,9 @@ class Admin::ItemsController < Admin::AdminBaseController
     @item = Item.new get_item_params
     save_status = '1'
     if @item.valid?
-      @item.size = @item.width * @item.height / 1000000.to_f
-      # @item.amout = @item.size * @item.price * @item.number + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
-      @item.amout = @item.size * @item.price * @item.number
+      @item.size = @item.width * @item.height / 1000000.to_f * @item.number
+      # @item.amout = @item.size * @item.price + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
+      @item.amout = @item.size * @item.price
       Item.transaction do
         begin
           @item.save
@@ -36,9 +36,9 @@ class Admin::ItemsController < Admin::AdminBaseController
     Item.transaction do
       begin
         @item.update_attributes get_item_params
-        @item.size = @item.width * @item.height / 1000000.to_f
-        # @item.amout = @item.size * @item.price * @item.number + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
-        @item.amout = @item.size * @item.price * @item.number
+        @item.size = @item.width * @item.height / 1000000.to_f * @item.number
+        # @item.amout = @item.size * @item.price + @item.punch_count * @item.punch_price + @item.dig_angle_count * @item.dig_angle_price
+        @item.amout = @item.size * @item.price
         @item.save
         order = Order.find_by_id(@item.order_id)
         order.amout = order.amout.to_f + @item.amout.to_f - old_amout.to_f

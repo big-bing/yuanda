@@ -54,4 +54,12 @@ module PdfUtils::OrderPdfUtil
     self.rest_amout
   end
 
+  def tpl_get_handling_description
+    self.handling_description
+  end
+
+  def tpl_get_handling_amout
+    self.handling_amout
+  end
+
 end
