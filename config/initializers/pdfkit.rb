@@ -42,7 +42,7 @@ PDFKit.configure do |config|
   config.default_options = {
     # :page_size => 'A4',
     :page_width => 210,
-    :page_height => 300,
+    :page_height => 297,
     :margin_top => 0,
     :margin_bottom => 0,
     :margin_left => 0,
