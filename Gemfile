@@ -54,6 +54,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
   gem 'capistrano-rbenv',   require: false
+  gem 'capistrano-rvm',   require: false
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
   gem 'capistrano-sneakers', github: '905-rocks/capistrano-sneakers'
   gem "capistrano-db-tasks", require: false

@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   # acts_as_paranoid
 
-  belongs_to :article
+  # belongs_to :article
 
   validates :name, presence: true
   validates :width, presence: true

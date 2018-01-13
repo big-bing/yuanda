@@ -1,4 +1,8 @@
-USERNAME: 'postgres'
-PASSWORD: ''
-PG_HOST: 'localhost'
-PG_PORT: '5433'
+default: &default
+  USERNAME: 'postgres'
+  PASSWORD: ''
+  PG_HOST: 'localhost'
+  PG_PORT: '5433'
+
+development:
+  <<: *default
