@@ -2,8 +2,10 @@ ch:
   activerecord:
     models:
       order: "订单"
+      tag: "标签书"
 
     attributes:
       order:
         name: "客户名称"
+        tel: "电话号码"
         code: "任务单编码"

@@ -62,4 +62,16 @@ module PdfUtils::OrderPdfUtil
     self.handling_amout
   end
 
+  def tpl_get_name
+    self.name
+  end
+
+  def tpl_get_code
+    self.code
+  end
+
+  def tpl_get_maker_name
+    self.maker_name
+  end
+
 end

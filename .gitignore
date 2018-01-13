@@ -7,7 +7,32 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
 # Ignore all logfiles and tempfiles.
 /log/*
+/tmp/*
 !/log/.keep
-/tmp
+!/tmp/.keep
+
+/node_modules
+/yarn-error.log
+
+.byebug_history
+
+config/application.yml
+config/database.yml
+
+.idea
+.rake_tasks~
+
+dump.rdb
+.DS_Store
+*.swp
+
+*.ignore
+*.ignore.rb
+
+.vscode

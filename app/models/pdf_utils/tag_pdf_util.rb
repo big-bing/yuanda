@@ -18,12 +18,19 @@ module PdfUtils::TagPdfUtil
       end
     end
     list_html = "<tr class='tag_tr'>"
-    tag_list.each_with_index do |tag, index|
-      list_html += "<td class='tag_td'>#{tag[0]}<br/>#{tag[1]}<br/>#{tag[2]}×#{tag[3]}×#{tag[4]}</td>"
-      list_html += "</tr><tr class='tag_tr'>" if (index + 1) % 4 == 0
-      list_html += "</tr>" if index + 1 == tag_list.size
+    if tag_list.size < 4
+      tag_list.each_with_index do |tag, index|
+        list_html += "<td class='tag_td'>#{tag[0]}<br/>#{tag[1]}<br/>#{tag[2]}×#{tag[3]}×#{tag[4]}</td>"
+      end
+      list_html += "<td colspan=" + (4 - tag_list.size).to_s + "></td>"
+      list_html += "</tr>"
+    else
+      tag_list.each_with_index do |tag, index|
+        list_html += "<td class='tag_td'>#{tag[0]}<br/>#{tag[1]}<br/>#{tag[2]}×#{tag[3]}×#{tag[4]}</td>"
+        list_html += "</tr><tr class='tag_tr'>" if (index + 1) % 4 == 0
+        list_html += "</tr>" if index + 1 == tag_list.size
+      end
     end
-    pp list_html
     list_html
   end
 

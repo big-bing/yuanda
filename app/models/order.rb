@@ -1,6 +1,6 @@
-class Order < ActiveRecord::Base
+class Order < ApplicationRecord
 
-  acts_as_paranoid
+  # acts_as_paranoid
 
   include PdfUtils::OrderPdfUtil
 

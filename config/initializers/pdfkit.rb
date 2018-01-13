@@ -34,5 +34,16 @@ class PDFKit
 
 end
 PDFKit.configure do |config|
-  config.wkhtmltopdf = '/Users/bigbing/.rvm/gems/ruby-2.3.0/bin/wkhtmltopdf' # 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+  # config.wkhtmltopdf = '/Users/bigbing/.rvm/gems/ruby-2.3.0/bin/wkhtmltopdf' # 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+  config.wkhtmltopdf = 'D:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+  config.default_options = {
+    # :page_size => 'A4',
+    :page_width => 210,
+    :page_height => 297,
+    :margin_top => 0,
+    :margin_bottom => 0,
+    :margin_left => 0,
+    :margin_right => 0,
+    :print_media_type => true,
+  }
 end

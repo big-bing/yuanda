@@ -39,7 +39,7 @@ class Admin::OrdersController < Admin::AdminBaseController
   def update
     old_handling_amout = @order.handling_amout
     @order.attributes = order_params
-    @order.amout = @order.amout.to_f + @order.handling_amout.to_f - old_handling_amout
+    @order.amout = @order.amout.to_f + @order.handling_amout.to_f - old_handling_amout.to_i
     @order.total_amout = @order.amout.to_i
     @order.capital_total_amout = number_to_capital_zh @order.total_amout
     if @order.valid?
@@ -53,10 +53,19 @@ class Admin::OrdersController < Admin::AdminBaseController
 
   def destroy
     @order = Order.find_by_id(params[:id]);
-    if @order.destroy
-      flash[:notice] = '删除成功'
-    else
-      flash[:notice] = '删除失败'
+    Order.transaction do
+      begin
+        @order.destroy
+        @order.order_tags.each do |order_tag|
+          order_tag_options = OrderTag.where(["tag_id = ?", order_tag.tag_id]).all
+          order_tag_options.each { |order_tag_option| order_tag_option.destroy }
+          order_tag.tag.destroy
+        end
+        flash[:notice] = '删除成功'
+      rescue Exception => e
+        flash[:notice] = '删除失败'
+        raise ActiveRecord::Rollback
+      end
     end
     redirect_to action: :index
   end
@@ -69,7 +78,7 @@ class Admin::OrdersController < Admin::AdminBaseController
     # html = get_context(params, article) if article.present?
     html = get_context order
     if html.blank?
-      flash[:notice] = "データが存在しません。"
+      flash[:notice] = "数据不存在。"
       return redirect_to admin_orders_path
     end
     pdf = PdfUtil.config(html, 'page')
@@ -79,7 +88,7 @@ class Admin::OrdersController < Admin::AdminBaseController
       flash[:notice] = t('no_data')
       return redirect_to admin_orders_path unless path
     end
-    send_file(path, filename: encode_file_name("glass_list.pdf"))
+    send_file(path, filename: encode_file_name("出货清单.pdf"))
   end
 
   def create_tag
@@ -136,7 +145,7 @@ class Admin::OrdersController < Admin::AdminBaseController
   end
 
   def order_params
-    params.fetch(:order, {}).permit(:name, :tel, :handling_amout, :handling_description);
+    params.fetch(:order, {}).permit(:name, :tel, :handling_amout, :handling_description, :maker_name);
   end
 
   # 获取模板以及将模板中需要动态显示数据的地方，把数据获取到

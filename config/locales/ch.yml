@@ -19,11 +19,14 @@ ch:
       page_entries_info:
         one_page:
           display_entries:
-            zero: "No %{entry_name} found"
-            one: "Displaying <b>1</b> %{entry_name}"
-            other: "Displaying <b>all %{count}</b> %{entry_name}"
+#            zero: "No %{entry_name} found"
+#            one: "Displaying <b>1</b> %{entry_name}"
+#            other: "Displaying <b>all %{count}</b> %{entry_name}"
+            zero: "无数据显示"
+            one: "显示 <b>1</b> 条数据"
+            other: "显示 <b>所有的 %{count}</b> 条数据"
         more_pages:
-          display_entries: "<b>%{total}</b> 件中 <b>%{first}</b> から <b>%{last}</b> まで表示"
+          display_entries: "总共 <b>%{total}</b> 条数据，页面中显示第 <b>%{first}</b> 条到第 <b>%{last}</b> 条"
   date:
     formats:
       default: "%Y/%m/%d"
@@ -64,7 +67,7 @@ ch:
     time_not_changed: "ご入力なさった日時はアプリ上の日時と同じなので、現在日時を変更する必要がありません。"
     early_date: "当日以前の日付を入力してください。"
     late_date: "終了日は開始日より早めに指定できません。"
-    no_data: "データが見つかりませんでした。"
+    no_data: "暂时还没有数据。"
     delete_confirm: "削除してもよろしいですか？"
     not_numbers_characters: "は英数字で入力してください。"
     no_select: "を選択してください。"

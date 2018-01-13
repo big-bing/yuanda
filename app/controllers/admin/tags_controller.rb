@@ -2,6 +2,14 @@ class Admin::TagsController < Admin::AdminBaseController
 
   def index
     @tags = Tag.all.page(params[:page]).per(50).order("tags.id desc")
+    @tags.each do |tag|
+      tag.number = 0
+      tag.order_tags.each do |order_tag|
+        order_tag.order.items.each do |item|
+          tag.number += item.number
+        end
+      end
+    end
   end
 
   def search
@@ -28,17 +36,17 @@ class Admin::TagsController < Admin::AdminBaseController
     # html = get_context(params, article) if article.present?
     html = get_context tag
     if html.blank?
-      flash[:notice] = "データが存在しません。"
+      flash[:notice] = "数据不存在。"
       return redirect_to admin_tags_path
     end
-    pdf = PdfUtil.config(html, 'page')
+    pdf = PdfUtil.config(html)
     pdf.to_file("order", "#{file_name}.pdf")
     path = "#{Rails.root.to_s}/tmp/pdf/order/#{file_name}.pdf" rescue nil
     if path.blank?
       flash[:notice] = t('no_data')
       return redirect_to admin_tags_path unless path
     end
-    send_file(path, filename: encode_file_name("tag.pdf"))
+    send_file(path, filename: encode_file_name("标签书.pdf"))
   end
 
   private

@@ -1,6 +1,6 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
 
-  acts_as_paranoid
+  # acts_as_paranoid
 
   include PdfUtils::TagPdfUtil
 

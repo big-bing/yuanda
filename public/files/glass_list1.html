@@ -6,10 +6,12 @@
     <title>出货清单1</title>
     <style type="text/css">
         body {
-            font-family: "ＭＳ 明朝", "MS Mincho", serif;
-            font-size: 14px;
+            /*font-family: "ＭＳ 明朝", "MS Mincho", serif;*/
+            font-family: "黑体", "SimHei", serif;
+            font-size: 20px;
             color: #000;
-            line-height: 18px;
+            line-height: 22px;
+            /*border: 1px solid #000;*/
         }
 
         body, h1, h2, h3, h4, h5, h5, div, p, table, th, td, ul, ol, li, dl, dt, dd, hr, fieldset, blockquote, pre, form, input {
@@ -85,8 +87,8 @@
         }
 
         #pdf_wrap {
-            width: 780px;
-            height: 28.5cm;
+            width: 880px;
+            /*height: 28.5cm;*/
             margin: 10px auto;
             position: relative;
         }
@@ -137,7 +139,7 @@
 
         table.tb_items {
             border: 1px solid #000;
-            font-size: 12px;
+            font-size: 18px;
         }
 
         table.tb_items th {
@@ -187,16 +189,24 @@
             bottom: 0px;
             right: 0px;
         }
+
+        .footer_div {
+            display: inline-block;
+            width: 24%;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 <div id="pdf_wrap">
 
     <!-- <h1><p><%= "tpl_event_name" %></p></h1> -->
-    <h2>出货清单</h2>
+    <h2>远太钢化玻璃厂出货清单</h2>
+    <div class="f_l">客户名称：<%= tpl_get_name %></div>
+    <div class="f_r">任务单编码：<%= tpl_get_code %></div>
     <table class="tb_items  spec" width="100%" cellpadding="0" cellspacing="0">
         <tr>
-            <th width="20%">品名<br/></th>
+            <th width="25%">品名<br/></th>
             <th colspan="2">规格(MM)</td>
             <th>数量(块)</th>
             <th>面积(平方)</td>
@@ -239,10 +249,10 @@
         </tr>
     </table>
     <p class="mb10">
-      制单：徐云霞&nbsp;&nbsp;
-      客户签名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      出纳：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      收货：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="footer_div">制单：<%= tpl_get_maker_name %></div>
+      <div class="footer_div">客户签名：</div>
+      <div class="footer_div">出纳：</div>
+      <div class="footer_div">收货：</div>
     </p>
 </div>
 </body>
