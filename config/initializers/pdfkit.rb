@@ -37,12 +37,12 @@ PDFKit.configure do |config|
   # config.wkhtmltopdf = '/Users/bigbing/.rvm/gems/ruby-2.3.0/bin/wkhtmltopdf' # 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
   # config.wkhtmltopdf = 'D:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
   # config.wkhtmltopdf = '/Users/bigbing/.rvm/gems/ruby-2.3.0/bin/wkhtmltopdf'
-  # config.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
-  config.wkhtmltopdf = '/usr/bin/wkhtmltopdf'
+  config.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
+  # config.wkhtmltopdf = '/usr/bin/wkhtmltopdf'
   config.default_options = {
-    :page_size => 'A4',
-    # :page_width => 210,
-    # :page_height => 297,
+    # :page_size => 'A4',
+    :page_width => 210,
+    :page_height => 300,
     :margin_top => 0,
     :margin_bottom => 0,
     :margin_left => 0,
