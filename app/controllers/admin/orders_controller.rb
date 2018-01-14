@@ -52,15 +52,12 @@ class Admin::OrdersController < Admin::AdminBaseController
   end
 
   def destroy
-    @order = Order.find_by_id(params[:id]);
+    @order = Order.find_by_id(params[:id])
     Order.transaction do
       begin
         @order.destroy
-        @order.order_tags.each do |order_tag|
-          order_tag_options = OrderTag.where(["tag_id = ?", order_tag.tag_id]).all
-          order_tag_options.each { |order_tag_option| order_tag_option.destroy }
-          order_tag.tag.destroy
-        end
+        @order.order_tags.destroy_all
+        @order.tags.destroy_all
         flash[:notice] = '删除成功'
       rescue Exception => e
         puts e.message

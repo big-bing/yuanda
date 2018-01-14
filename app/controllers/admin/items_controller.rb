@@ -19,6 +19,7 @@ class Admin::ItemsController < Admin::AdminBaseController
           order.save
           save_status = '2'
         rescue Exception => e
+          puts e.message
           save_status = '3'
           raise ActiveRecord::Rollback
         end
