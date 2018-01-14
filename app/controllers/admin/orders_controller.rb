@@ -63,6 +63,7 @@ class Admin::OrdersController < Admin::AdminBaseController
         end
         flash[:notice] = '删除成功'
       rescue Exception => e
+        puts e.messages
         flash[:notice] = '删除失败'
         raise ActiveRecord::Rollback
       end
@@ -113,6 +114,7 @@ class Admin::OrdersController < Admin::AdminBaseController
         tag.save
         save_status = '2'
       rescue Exception => e
+        puts e.messages
         save_status = '3'
         raise ActiveRecord::Rollback
       end
