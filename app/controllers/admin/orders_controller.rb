@@ -56,8 +56,8 @@ class Admin::OrdersController < Admin::AdminBaseController
     Order.transaction do
       begin
         @order.destroy
-        @order.order_tags.destroy_all
         @order.tags.destroy_all
+        @order.order_tags.destroy_all
         flash[:notice] = '删除成功'
       rescue Exception => e
         puts e.message
