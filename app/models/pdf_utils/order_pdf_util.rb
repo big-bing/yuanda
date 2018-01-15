@@ -10,7 +10,7 @@ module PdfUtils::OrderPdfUtil
 
   def tpl_get_list
     list_html = ''
-    self.items.each do |item|
+    self.items.order('items.id asc').each do |item|
       list_html += <<-EOF
         <tr>
             <td>#{item.name}</td>
