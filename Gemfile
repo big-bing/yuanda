@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'kaminari'
 gem 'figaro'
 
 group :development, :test do
@@ -83,5 +84,4 @@ gem 'rb-readline'
 
 gem 'remotipart'
 gem 'uuidtools'
-gem 'kaminari'
 # gem 'paranoia', '~> 2.2.0.pre'
