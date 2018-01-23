@@ -136,7 +136,7 @@ class Admin::OrdersController < Admin::AdminBaseController
 
   def find_order
     @order = Order.find_by_id(params[:id])
-    @items = @order.items
+    @items = @order.items.order('items.id asc')
     if @order.blank?
       flash[:error] = t('no_data')
       redirect_to action: :index
